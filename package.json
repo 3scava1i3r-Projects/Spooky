@@ -1,0 +1,38 @@
+{
+  "name": "fantom_1mw",
+  "version": "1.0.0",
+  "description": "my entry for fantom 1mw hackathon",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "dev": "webpack-cli serve --mode development --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3scava1i3r/Fantom_1MW.git"
+  },
+  "author": "3scava1i3r",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3scava1i3r/Fantom_1MW/issues"
+  },
+  "homepage": "https://github.com/3scava1i3r/Fantom_1MW#readme",
+  "dependencies": {
+    "assert": "^2.0.0",
+    "authereum": "^0.1.14",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^5.7.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.4",
+    "walletconnect": "^1.4.1",
+    "web3": "^1.3.6",
+    "web3modal": "^1.9.3",
+    "webpack": "^5.40.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.7.2"
+  }
+}
