@@ -59,23 +59,25 @@ nftbtn.addEventListener("click", function () {
     var options = {
       method: "GET"
     };
-    fetch("https://api.covalenthq.com/v1/4002/address/".concat(selectedACC, "/balances_v2/?key=ckey_62dc169a991f4d7ebe7dd52afef:?nft=true"), options).then(function (response) {
+    fetch("https://api.covalenthq.com/v1/80001/address/0x55590DcD461Ce79eB2280Cd1446932b46112AFc9/balances_v2/?nft=true&key=ckey_62dc169a991f4d7ebe7dd52afef:", options).then(function (response) {
       return response.json();
     }).then(function (_char) {
-      _char.data.items.map(function (res) {
-        try {
-          var gg = document.getElementById("needed");
-          var characterElement = document.createElement("p");
-          characterElement.style.cssText = "margin:10px";
-          characterElement.innerText = "Character Name: ".concat(res.type);
-          gg.append(characterElement);
-        } catch (error) {
-          console.log(error);
+      _char.data.items.map(function (res, i) {
+        if (res.type == "nft") {
+          try {
+            var gg = document.getElementById("dev");
+            var characterElement = document.getElementById("container");
+            var content = "\n                        <div id=\"container\">\n                        <div id=\"card\">\n                          <div id=\"content\">\n                          <img src=\"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.x_zAX0jhA66V8u8Fbd9PVwHaIk%26pid%3DApi&f=1\" alt=\"NFT image\" id=\"nftimg\">\n                              <h2>".concat(i + 1, "</h2>\n                              <h3>").concat(res.contract_name, "</h3>\n                              <p>").concat(res.nft_data[0].owner, "</p>\n                              <audio controls id=\"audio\">\n                              <source  src=\"https://lithiumfi.com/audio/eJRjuG-7Taw.mp3\" type=\"audio/mpeg\">\n                              Error: your web browser does not support this audio player.\n                              </audio> \n                            </div>\n                          </div>\n                        </div>\n                        ");
+            gg.innerHTML += content;
+          } catch (error) {
+            console.log(error);
+          }
         }
       });
     });
   }
-});
+}); //AIzaSyDE8nLLLp7I94oSDl4O-pOUax1wNNBo-98;
+
 /* fetch(
   "https://shazam.p.rapidapi.com/search?term=lol&locale=en-US&offset=0&limit=5",
   {
@@ -92,4 +94,27 @@ nftbtn.addEventListener("click", function () {
   .catch((err) => {
     console.error(err);
   });
+
+/* 
+
+fetch(
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDE8nLLLp7I94oSDl4O-pOUax1wNNBo-98&type=video&q=zenitsu%20song",
+  {
+    method: "GET",
+  }
+)
+  .then((res) => res.json())
+  .then((re) => {
+    
+    const vidid = re.items[0].id.videoId
+    console.log(vidid)
+
+    
+  }
+  )
+  .catch((err) => {
+    console.error(err);
+  });
+
+
  */

@@ -51,6 +51,7 @@
 
 #needed {
   padding-top: 100px;
+  text-align: center;
 }
 
 #web3connect {
@@ -60,6 +61,102 @@
   font-size: 25px;
 }
 
+/* nft css down */
+#getmynft {
+  font-size: 20px;
+  width: 200px;
+  border-radius: 5px;
+  margin-top: 110px;
+  left: 44%;
+  position: relative;
+}
+
 #dev {
-  margin-top: 100px;
+  margin-top: 30px;
+}
+
+#container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  flex-wrap: wrap;
+  z-index: 1;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+#container #card {
+  position: relative;
+  width: 380px;
+  height: 300px;
+  margin: 20px;
+  box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+}
+
+#container #card #content {
+  padding: 20px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+#container #card #content h2 {
+  position: absolute;
+  top: -30px;
+  right: 30px;
+  font-size: 8em;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+#container #card #content h3 {
+  font-size: 1.8em;
+  color: #ffffff;
+  z-index: 1;
+}
+
+#container #card #content p {
+  font-size: 1em;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+#container #card #content a {
+  position: relative;
+  display: inline-block;
+  padding: 4px 10px;
+  margin-top: 2px;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#end {
+  margin-top: 110px;
+  font-size: 18px;
+  text-align: center;
+}
+
+#audio {
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+#nftimg {
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  margin-right: 200px;
 }

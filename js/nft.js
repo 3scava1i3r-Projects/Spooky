@@ -2,8 +2,6 @@ const web3btn = document.getElementById("web3connect");
 const nftbtn = document.getElementById("getmynft");
 const acc = document.getElementById("acc");
 
-
-
 const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
 let selectedACC;
@@ -32,9 +30,7 @@ const ConnectWallet = async () => {
 
 web3btn.addEventListener("click", () => {
   ConnectWallet();
-  
 });
-
 
 
 nftbtn.addEventListener("click", () => {
@@ -43,26 +39,45 @@ nftbtn.addEventListener("click", () => {
   } else {
     const options = { method: "GET" };
     fetch(
-      `https://api.covalenthq.com/v1/4002/address/${selectedACC}/balances_v2/?key=ckey_62dc169a991f4d7ebe7dd52afef:?nft=true`,
+      `https://api.covalenthq.com/v1/80001/address/0x55590DcD461Ce79eB2280Cd1446932b46112AFc9/balances_v2/?nft=true&key=ckey_62dc169a991f4d7ebe7dd52afef:`,
       options
     )
       .then((response) => response.json())
       .then((char) => {
-        char.data.items.map((res) => {
-          try {
-            const gg = document.getElementById("needed");
-            const characterElement = document.createElement("p");
-            characterElement.style.cssText = "margin:10px";
-            characterElement.innerText = `Character Name: ${res.type}`;
-            gg.append(characterElement);
-          } catch (error) {
-            console.log(error);
+        char.data.items.map((res, i) => {
+          if(res.type == "nft"){
+            try {
+              const gg = document.getElementById("dev");
+              const characterElement = document.getElementById("container");
+
+              const content = `
+                        <div id="container">
+                        <div id="card">
+                          <div id="content">
+                          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.x_zAX0jhA66V8u8Fbd9PVwHaIk%26pid%3DApi&f=1" alt="NFT image" id="nftimg">
+                              <h2>${i + 1}</h2>
+                              <h3>${res.contract_name}</h3>
+                              <p>${res.nft_data[0].owner}</p>
+                              <audio controls id="audio">
+                              <source  src="https://lithiumfi.com/audio/eJRjuG-7Taw.mp3" type="audio/mpeg">
+                              Error: your web browser does not support this audio player.
+                              </audio> 
+                            </div>
+                          </div>
+                        </div>
+                        `;
+              gg.innerHTML += content;
+            } catch (error) {
+              console.log(error);
+            }
           }
         });
       });
   }
 });
 
+
+//AIzaSyDE8nLLLp7I94oSDl4O-pOUax1wNNBo-98;
 /* fetch(
   "https://shazam.p.rapidapi.com/search?term=lol&locale=en-US&offset=0&limit=5",
   {
@@ -79,4 +94,32 @@ nftbtn.addEventListener("click", () => {
   .catch((err) => {
     console.error(err);
   });
+
+/* 
+
+fetch(
+  "https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDE8nLLLp7I94oSDl4O-pOUax1wNNBo-98&type=video&q=zenitsu%20song",
+  {
+    method: "GET",
+  }
+)
+  .then((res) => res.json())
+  .then((re) => {
+    
+    const vidid = re.items[0].id.videoId
+    console.log(vidid)
+
+    
+  }
+  )
+  .catch((err) => {
+    console.error(err);
+  });
+
+
  */
+
+
+
+
+
