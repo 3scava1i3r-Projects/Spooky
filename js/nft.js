@@ -54,10 +54,11 @@ nftbtn.addEventListener("click", () => {
                         <div id="container">
                         <div id="card">
                           <div id="content">
-                          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.x_zAX0jhA66V8u8Fbd9PVwHaIk%26pid%3DApi&f=1" alt="NFT image" id="nftimg">
-                              <h2>${i + 1}</h2>
-                              <h3>${res.contract_name}</h3>
-                              <p>${res.nft_data[0].owner}</p>
+                          <img src="${res.nft_data[0].external_data.image}" alt="NFT image" id="nftimg">
+                              <h2>${i+1}</h2>
+                              <h3>${res.nft_data[0].external_data.name}</h3>
+                              <p>${res.contract_name}</p>
+                              <a href="#">More info on the nft</a>
                               <audio controls id="audio">
                               <source  src="https://lithiumfi.com/audio/eJRjuG-7Taw.mp3" type="audio/mpeg">
                               Error: your web browser does not support this audio player.
