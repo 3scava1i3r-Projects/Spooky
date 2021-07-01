@@ -39,7 +39,7 @@ nftbtn.addEventListener("click", () => {
   } else {
     const options = { method: "GET" };
     fetch(
-      `https://api.covalenthq.com/v1/80001/address/0x55590DcD461Ce79eB2280Cd1446932b46112AFc9/balances_v2/?nft=true&key=ckey_62dc169a991f4d7ebe7dd52afef:`,
+      `https://api.covalenthq.com/v1/31/address/${selectedACC}/balances_v2/?nft=true&key=ckey_62dc169a991f4d7ebe7dd52afef:`,
       options
     )
       .then((response) => response.json())
@@ -48,8 +48,6 @@ nftbtn.addEventListener("click", () => {
           if(res.type == "nft"){
             try {
               const gg = document.getElementById("dev");
-              const characterElement = document.getElementById("container");
-
               const content = `
                         <div id="container">
                         <div id="card">
@@ -59,10 +57,6 @@ nftbtn.addEventListener("click", () => {
                               <h3>${res.nft_data[0].external_data.name}</h3>
                               <p>${res.contract_name}</p>
                               <a href="#">More info on the nft</a>
-                              <audio controls id="audio">
-                              <source  src="https://lithiumfi.com/audio/eJRjuG-7Taw.mp3" type="audio/mpeg">
-                              Error: your web browser does not support this audio player.
-                              </audio> 
                             </div>
                           </div>
                         </div>

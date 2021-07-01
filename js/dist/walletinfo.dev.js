@@ -2,6 +2,7 @@
 
 var web3btn = document.getElementById("web3connect");
 var acc = document.getElementById("acc");
+var bal = document.getElementById("balance");
 var Web3Modal = window.Web3Modal["default"];
 var WalletConnectProvider = window.WalletConnectProvider["default"];
 var selectedACC;
@@ -38,8 +39,17 @@ var ConnectWallet = function ConnectWallet() {
         case 8:
           accounts = _context.sent;
           selectedACC = accounts[0];
+          acc.innerText = selectedACC;
 
-        case 10:
+          if (selectedACC != null | undefined) {
+            getBalance();
+            document.getElementById("last10txn").innerHTML = "<h1>Last 10 txn below</h1>";
+            getlast10txn();
+          } else {
+            console.log("yo! connect the damn wallet");
+          }
+
+        case 12:
         case "end":
           return _context.stop();
       }
@@ -49,42 +59,71 @@ var ConnectWallet = function ConnectWallet() {
 
 web3btn.addEventListener("click", function () {
   ConnectWallet();
-  acc.innerText = selectedACC;
 });
-var options = {
-  method: "GET"
-};
-fetch("https://api.covalenthq.com/v1/4002/address/".concat(selectedACC, "/balances_v2/?key=ckey_62dc169a991f4d7ebe7dd52afef:?nft=true"), options).then(function (response) {
-  return response.json();
-}).then(function (_char) {
-  _char.data.items.map(function (res) {
-    try {
-      var gg = document.getElementById("needed");
-      var characterElement = document.createElement("p");
-      characterElement.style.cssText = "margin:10px";
-      characterElement.innerText = "Character Name: ".concat(res.type);
-      gg.append(characterElement);
-    } catch (error) {
-      console.log(error);
+
+var getBalance = function getBalance() {
+  var options;
+  return regeneratorRuntime.async(function getBalance$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          options = {
+            method: "GET"
+          };
+          fetch("https://api.covalenthq.com/v1/31/address/".concat(selectedACC, "/balances_v2/?key=ckey_62dc169a991f4d7ebe7dd52afef:"), options).then(function (response) {
+            return response.json();
+          }).then(function (_char) {
+            _char.data.items.map(function (res, i) {
+              try {
+                if (res.contract_name = "RSK Testnet Ether") {
+                  var f = res.balance / Math.pow(10, res.contract_decimals);
+                  content = "\n            <div>tRBTC Balance = ".concat(f, "</div>\n            ");
+                  bal.innerHTML += content;
+                }
+              } catch (error) {
+                console.log(error);
+              }
+            });
+          });
+
+        case 2:
+        case "end":
+          return _context2.stop();
+      }
     }
   });
-});
-/* 
-fetch(
-  "https://shazam.p.rapidapi.com/search?term=lol&locale=en-US&offset=0&limit=5",
-  {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": "c1ba468951msh37b0944386cbadfp11b047jsn898d59d12dfc",
-      "x-rapidapi-host": "shazam.p.rapidapi.com",
-    },
-  }
-)
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+};
 
- */
+var getlast10txn = function getlast10txn() {
+  var options;
+  return regeneratorRuntime.async(function getlast10txn$(_context3) {
+    while (1) {
+      switch (_context3.prev = _context3.next) {
+        case 0:
+          options = {
+            method: "GET"
+          };
+          fetch("https://api.covalenthq.com/v1/31/address/".concat(selectedACC, "/transactions_v2/?no-logs=true&key=ckey_62dc169a991f4d7ebe7dd52afef:"), options).then(function (response) {
+            return response.json();
+          }).then(function (_char2) {
+            if (_char2.data.chain_id == 31) {
+              _char2.data.items.map(function (res, i) {
+                if (i + 1 <= 10) {
+                  try {
+                    content = "\n          <div id=\"txncon\">\n            <div id=\"txncard\">\n                <div id=\"txncontent\">\n                    <p id=\"txnp\">from address:".concat(res.from_address, "</p>\n                    <p id=\"txnp\">txn hash:").concat(res.tx_hash, "</p>\n                    <a href=\"https://explorer.testnet.rsk.co/tx/").concat(res.tx_hash, "\" id=\"txna\">more info</a>\n                </div>\n            </div>\n          </div>\n            ");
+                    document.getElementById("last10txn").innerHTML += content;
+                  } catch (error) {
+                    console.log(error);
+                  }
+                }
+              });
+            }
+          });
+
+        case 2:
+        case "end":
+          return _context3.stop();
+      }
+    }
+  });
+};
