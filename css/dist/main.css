@@ -226,3 +226,8 @@
   width: 100px;
   margin-right: 200px;
 }
+
+#mychart {
+  width: 400px;
+  height: 400px;
+}
