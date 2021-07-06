@@ -44,9 +44,11 @@ nftbtn.addEventListener("click", () => {
     )
       .then((response) => response.json())
       .then((char) => {
+        console.log("found all nfts");
         char.data.items.map((res, i) => {
           if(res.type == "nft"){
             try {
+              
               const gg = document.getElementById("dev");
               const content = `
                         <div id="container">

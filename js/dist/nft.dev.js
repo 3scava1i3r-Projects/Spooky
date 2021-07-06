@@ -62,6 +62,8 @@ nftbtn.addEventListener("click", function () {
     fetch("https://api.covalenthq.com/v1/31/address/".concat(selectedACC, "/balances_v2/?nft=true&key=ckey_62dc169a991f4d7ebe7dd52afef:"), options).then(function (response) {
       return response.json();
     }).then(function (_char) {
+      console.log("found all nfts");
+
       _char.data.items.map(function (res, i) {
         if (res.type == "nft") {
           try {
