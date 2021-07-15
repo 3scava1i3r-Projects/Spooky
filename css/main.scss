@@ -11,7 +11,9 @@
 #body {
     font-family: 'Cute Font';
     background-color: #0a093df3;
-    color:rgb(255, 255, 255)
+    color:rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
 }
 
 #header{
@@ -222,7 +224,7 @@
 }
 
 #end{
-    margin-top: 10px;
+    margin-top: 40%;
     font-size: 18px;
     text-align: center;
     width: 100%;
@@ -249,3 +251,99 @@
     height:400px;
 }
 
+
+
+// buy below
+
+#rowt {
+
+    max-width: 700px;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+
+}
+
+
+// token 
+
+#tcontainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    flex-wrap: wrap;
+    z-index: 1;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+#tcontainer #tcard {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 20px;
+    box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+}
+
+#tcontainer #tcard #tcontent {
+    padding: 20px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+#tcontainer #tcard #tcontent h2 {
+    position: absolute;
+    top: -30px;
+    right: 30px;
+    font-size: 6em;
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    margin-top: 10px;
+
+}
+
+#tcontainer #tcard #tcontent h3 {
+    font-size: 1.8em;
+    color: #ffffff;
+    z-index: 1;
+
+}
+
+#tcontainer #tcard #tcontent p {
+    font-size: 1em;
+    color: #ffffff;
+    font-weight: 300;
+
+}
+
+#tcontainer #tcard #tcontent a {
+    position: relative;
+    display: inline-block;
+    padding: 4px 10px;
+    margin-top: 2px;
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+#timg {
+    border-radius: 20px;
+    height: 100px;
+    width: 100px;
+    left:20%
+}

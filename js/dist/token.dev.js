@@ -2,22 +2,36 @@
 
 var tokenList = [{
   name: "RIF",
-  Address: "0x2acc95758f8b5f583470ba265eb685a8f45fc9d5"
+  Address: "0x2acc95758f8b5f583470ba265eb685a8f45fc9d5",
+  image: "https://developers.rsk.co/assets/img/rif/rif-logo.png"
 }, {
-  name: "RIFP",
-  Address: "0xF4d27C56595eD59B66cC7f03CFF5193E4Bd74a61"
-}, {
-  name: "RDOC",
-  Address: "0x2d919f19d4892381d58edebeca66d5642cef1a1f"
-}, {
-  name: "SOV",
-  Address: "0xEfC78FC7D48B64958315949279bA181C2114abbD"
+  name: "rBUND",
+  Address: "0x4991516df6053121121274397a8c1dad608bc95b",
+  image: "https://developers.rsk.co/assets/img/rif/rif-logo.png"
 }, {
   name: "rUSDT",
-  Address: "0xEf213441a85DF4d7acBdAe0Cf78004E1e486BB96"
+  Address: "0xef213441a85df4d7acbdae0cf78004e1e486bb96",
+  image: "https://developers.rsk.co/assets/img/rif/rif-logo.png"
+}, {
+  name: "RIFP",
+  Address: "0xF4d27C56595eD59B66cC7f03CFF5193E4Bd74a61",
+  image: ""
+}, {
+  name: "RDOC",
+  Address: "0x2d919f19d4892381d58edebeca66d5642cef1a1f",
+  image: ""
+}, {
+  name: "SOV",
+  Address: "0xEfC78FC7D48B64958315949279bA181C2114abbD",
+  image: ""
+}, {
+  name: "rUSDT",
+  Address: "0xEf213441a85DF4d7acBdAe0Cf78004E1e486BB96",
+  image: ""
 }, {
   name: "XUSD",
-  Address: "0xb5999795BE0eBb5BAb23144Aa5fD6a02d080299f"
+  Address: "0xb5999795BE0eBb5BAb23144Aa5fD6a02d080299f",
+  image: "https://live.sovryn.app/static/media/xusd.ff9d001f.svg?__WB_REVISION__=ff9d001fe4897a3a19f32a3cd5380576"
 }];
 tokenList.map(function (res, i) {
   console.log(res.name, res.Address);
@@ -90,10 +104,19 @@ var getTokeninfo = function getTokeninfo() {
             method: "GET"
           };
           tokenList.map(function (res, i) {
-            fetch("https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/30/RIF/".concat(res.Address, "/?&key=ckey_62dc169a991f4d7ebe7dd52afef"), options).then(function (response) {
+            var img = res.image;
+            fetch("https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/30/USD/".concat(res.Address, "/?from=2021-06-03&to=").concat(today, "&key=ckey_62dc169a991f4d7ebe7dd52afef%3A"), options).then(function (response) {
               return response.json();
             }).then(function (_char) {
-              console.log(_char);
+              console.log(_char.data);
+
+              try {
+                var gg = document.getElementById("dev");
+                var content = "\n                        <div id=\"tcontainer\">\n                        <div id=\"tcard\">\n                          <div id=\"tcontent\">\n                          <img src=\"".concat(img, "\" alt=\"coin image\" id=\"timg\">\n                              <h2>").concat(i + 1, "</h2>\n                              <h3>").concat(_char.data[0].logo_url, "</h3>\n                              <p>").concat(_char.data[0].name, "</p>\n                              \n                            </div>\n                          </div>\n                        </div>\n                        ");
+                gg.innerHTML += content;
+              } catch (error) {
+                console.log(error);
+              }
             });
           });
 

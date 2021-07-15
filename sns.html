@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/dist/main.css" media="screen" />
-    <script src="./js/defi.js" type="module"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.min.js" integrity="sha512-JxJpoAvmomz0MbIgw9mx+zZJLEvC6hIgQ6NcpFhVmbK1Uh5WynnRTTSGv3BTZMNBpPbocmdSJfldgV5lVnPtIw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/jpg" href="./assets/favicon.ico"/>
+    <script src="./js/sns.js" type="module"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/jpg" href="./assets/favicon.ico" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>Spooky</title>
+    <title>spooky</title>
 </head>
+
 <body id="body">
     <nav id="header">
         <a href="./index.html">
@@ -28,27 +30,26 @@
             <li><button type="button" class="" id="web3connect">wallet</button></li>
         </ul>
     </nav>
-    
-    
-    
-    <div id="needed">
-        <h1>
-            defi portfolio - let's check your tokens
-        </h1>
 
-        <canvas id="myChart" ></canvas>
+
+
+    <div id="needed">
+    <h1>lets just check our address here</h1>
     </div>
 
-    
-    
-    
+
+    <div id="balance">
+    </div>
+
+
     <p id="end">Made with &#129293 by 3scava1i3r</p>
     <!--  adding scripts for outside js work -->
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.3/dist/index.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.4.1/dist/umd/index.min.js"></script>
-    
-    
-</body>
-</html>
+    <script type="text/javascript"
+        src="https://unpkg.com/@walletconnect/web3-provider@1.4.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@ensdomains/ensjs@2.0.1/dist/index.js"></script>
 
+</body>
+
+</html>
