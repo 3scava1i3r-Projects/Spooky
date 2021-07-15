@@ -230,8 +230,8 @@
 }
 
 #mychart {
-  width: 400px;
-  height: 400px;
+  max-width: 100%;
+  max-height: 40%;
 }
 
 #rowt {
@@ -312,8 +312,10 @@
 }
 
 #timg {
+  position: absolute;
   border-radius: 20px;
-  height: 100px;
-  width: 100px;
-  left: 20%;
+  height: 80px;
+  width: 80px;
+  left: 5%;
+  top: 5%;
 }

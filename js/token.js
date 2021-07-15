@@ -5,43 +5,14 @@ let tokenList = [
     image: "https://developers.rsk.co/assets/img/rif/rif-logo.png",
   },
   {
-    name: "rBUND",
-    Address: "0x4991516df6053121121274397a8c1dad608bc95b",
+    name: "RIF",
+    Address: "0x2acc95758f8b5f583470ba265eb685a8f45fc9d5",
     image: "https://developers.rsk.co/assets/img/rif/rif-logo.png",
-  },
-  {
-    name: "rUSDT",
-    Address: "0xef213441a85df4d7acbdae0cf78004e1e486bb96",
-    image: "https://developers.rsk.co/assets/img/rif/rif-logo.png",
-  },
-
-  {
-    name: "RIFP",
-    Address: "0xF4d27C56595eD59B66cC7f03CFF5193E4Bd74a61",
-    image: "",
-  },
-  {
-    name: "RDOC",
-    Address: "0x2d919f19d4892381d58edebeca66d5642cef1a1f",
-    image: "",
-  },
-  {
-    name: "SOV",
-    Address: "0xEfC78FC7D48B64958315949279bA181C2114abbD",
-    image: "",
-  },
-  {
-    name: "rUSDT",
-    Address: "0xEf213441a85DF4d7acBdAe0Cf78004E1e486BB96",
-    image: "",
-  },
-  {
-    name: "XUSD",
-    Address: "0xb5999795BE0eBb5BAb23144Aa5fD6a02d080299f",
-    image:
-      "https://live.sovryn.app/static/media/xusd.ff9d001f.svg?__WB_REVISION__=ff9d001fe4897a3a19f32a3cd5380576",
   },
 ];
+
+let price = []
+console.log(price)
 
 tokenList.map((res,i) => {
     console.log(res.name , res.Address)
@@ -78,6 +49,9 @@ const ConnectWallet = async () => {
 
   if ((selectedACC != null) | undefined) {
     getTokeninfo();
+    setTimeout(() => {
+      chartIt();
+    }, 2000);
   } else {
     console.log("yo! connect the damn wallet");
   }
@@ -93,26 +67,24 @@ const getTokeninfo = async () => {
   tokenList.map((res, i) => {
     let img = res.image 
     fetch(
-      `https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/30/USD/${res.Address}/?from=2021-06-03&to=${today}&key=ckey_62dc169a991f4d7ebe7dd52afef%3A`,
+      `https://api.covalenthq.com/v1/pricing/historical_by_addresses_v2/30/USD/${res.Address}/?from=${lastm}&to=${today}&key=ckey_62dc169a991f4d7ebe7dd52afef%3A`,
       options
     )
       .then((response) => response.json())
       .then((char) => {
-        console.log(char.data);
-
+        console.log(char.data[0].prices);
+        price = char.data[0].prices;
         try {
           const gg = document.getElementById("dev");
           const content = `
                         <div id="tcontainer">
                         <div id="tcard">
                           <div id="tcontent">
-                          <img src="${
-                            img
-                          }" alt="coin image" id="timg">
+                          <img src="${img}" alt="coin image" id="timg">
                               <h2>${i + 1}</h2>
                               <h3>${char.data[0].logo_url}</h3>
                               <p>${char.data[0].name}</p>
-                              
+                              <canvas id="myChart" ></canvas>
                             </div>
                           </div>
                         </div>
@@ -138,3 +110,31 @@ let lastm
 lastm = yyyy + "-" + (lm) + "-" + dd;  
 console.log(lastm)
 
+
+
+
+function chartIt() {
+  const ctx = document.getElementById("myChart").getContext("2d");
+  const myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: price,
+      datasets: [
+        {
+          label: "price",
+          data: price,
+          backgroundColor: ["rgba(255, 255, 255, 0.2)"],
+          borderColor: ["rgba(255, 255, 255, 1)"],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+}
